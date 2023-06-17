@@ -1,15 +1,14 @@
 <p>measurement-conversion works!</p>
-<h2>Measurement Conversion</h2>
-
-<form (ngSubmit)="convertMeasurements()">
-  <label for="inputString">Input:</label>
-  <input id="inputString" [(ngModel)]="inputString" name="inputString" required>
-  <button type="submit">Convert</button>
-</form>
-
-<div *ngIf="conversionResults.length > 0">
-  <h3>Conversion Results:</h3>
-  <ul>
-    <li *ngFor="let result of conversionResults">{{ result }}</li>
-  </ul>
-</div>
+<form (ngSubmit)="convertMeasurements(inputString)">
+    <label for="inputString">Input String:</label>
+    <input type="text" id="inputString" [(ngModel)]="inputString" name="inputString" required>
+    <button type="submit">Convert</button>
+  </form>
+  
+  <div *ngIf="conversionResults && conversionResults.length > 0">
+    <h4>Conversion Results:</h4>
+    <ul>
+      <li *ngFor="let result of conversionResults">{{ result }}</li>
+    </ul>
+  </div>
+  

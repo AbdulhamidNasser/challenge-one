@@ -1,5 +1,6 @@
+
+
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-measurement-conversion',
@@ -7,26 +8,29 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./measurement-conversion.component.css']
 })
 export class MeasurementConversionComponent {
-  inputString: string;
-  conversionResults: number[];
+  inputString: string = ''; // Provide an initial value
+  conversionResults: number[] = []; // Provide an initial value
 
-  constructor(private http: HttpClient) {
-    this.inputString = '';
-    this.conversionResults = [];
+  convertMeasurements(str: string): void {
+    this.conversionResults = this.isValidSeq(str) ? this.extractConversionResults(str) : [];
   }
 
-  convertMeasurements() {
-    const url = `http://localhost:8080/convert-measurements?input=${this.inputString}`;
-    this.http.get<number[]>(url).subscribe(
-      results => {
-        this.conversionResults = results;
-      },
-      error => {
-        console.log('An error occurred:', error);
-      }
-    );
+  private extractConversionResults(str: string): number[] {
+    const collectedValues: number[] = [];
+    // Add the provided convertMeasurements logic here
+    // ...
+
+    return collectedValues;
+  }
+
+  private isValidSeq(str: string): boolean {
+    const pattern = "^[a-z_]+$";
+    const match = str.match(pattern);
+    return !!match;
   }
 }
+
+
 
 
 

@@ -49,8 +49,22 @@ app.get('/convert-measurements', (req, res) => {
     return results;
   }
   
-
-
+  app.get('/convert-measurements', (req, res) => {
+    const input = req.query.input;
+    // Use the input value to perform your measurement conversion logic
+    // For example:
+    const conversionResults = convertMeasurements(input);
+    res.status(200).json(conversionResults);
+  });
+  
+  // Function to perform the measurement conversion
+  function convertMeasurements(input) {
+    // Implement your measurement conversion logic here
+    // Return the conversion results
+    return [1, 2, 3];
+  }
+  
+  
 
 
 app.listen(8080, () => {
