@@ -1,10 +1,12 @@
+
+
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { MeasurementConversionComponent } from './measurement-conversion/measurement-conversion.component';
 
 const routes: Routes = [
-  { path: 'measurement-conversion', component: MeasurementConversionComponent },
-  // Other routes if any
+  { path: 'convert', component: MeasurementConversionComponent },
+  // Other routes...
 ];
 
 @NgModule({

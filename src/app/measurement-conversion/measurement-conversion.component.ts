@@ -1,6 +1,8 @@
 
 
+
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-measurement-conversion',
@@ -8,25 +10,32 @@ import { Component } from '@angular/core';
   styleUrls: ['./measurement-conversion.component.css']
 })
 export class MeasurementConversionComponent {
-  inputString: string = ''; // Provide an initial value
-  conversionResults: number[] = []; // Provide an initial value
+  measurementInput: string = '';
+  measurementResult: string[] = [];
 
-  convertMeasurements(str: string): void {
-    this.conversionResults = this.isValidSeq(str) ? this.extractConversionResults(str) : [];
+  constructor(private http: HttpClient) {}
+
+  measure(): void {
+    const input = this.measurementInput.trim();
+
+    // Make a GET request to the API endpoint to measure the input
+    this.http.get<string[]>(`/convert-measurements?input=${input}`)
+      .subscribe(data => {
+        this.measurementResult = data;
+      }, error => {
+        console.error('Error:', error);
+      });
   }
 
-  private extractConversionResults(str: string): number[] {
-    const collectedValues: number[] = [];
-    // Add the provided convertMeasurements logic here
-    // ...
-
-    return collectedValues;
-  }
-
-  private isValidSeq(str: string): boolean {
-    const pattern = "^[a-z_]+$";
-    const match = str.match(pattern);
-    return !!match;
+  login(name: string, password: string): void {
+    // Make a POST request to the API endpoint to authenticate the user
+    this.http.post('/login', { name, password })
+      .subscribe(data => {
+        // Handle the authentication response
+        console.log(data);
+      }, error => {
+        console.error('Error:', error);
+      });
   }
 }
 

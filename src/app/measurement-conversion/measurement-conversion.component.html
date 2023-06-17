@@ -1,14 +1,23 @@
 <p>measurement-conversion works!</p>
-<form (ngSubmit)="convertMeasurements(inputString)">
-    <label for="inputString">Input String:</label>
-    <input type="text" id="inputString" [(ngModel)]="inputString" name="inputString" required>
-    <button type="submit">Convert</button>
-  </form>
+<div class="container">
+    <h1>Package Measurement Conversion</h1>
   
-  <div *ngIf="conversionResults && conversionResults.length > 0">
-    <h4>Conversion Results:</h4>
-    <ul>
-      <li *ngFor="let result of conversionResults">{{ result }}</li>
-    </ul>
+    <!-- Measurement Conversion Section -->
+    <section>
+      <h2>Enter a Measurement in Characters</h2>
+      <input type="text" [(ngModel)]="measurementInput" placeholder="Type the sequence here ..." />
+      <button (click)="measure()">Measure</button>
+      <div id="measurementResult">
+        <p *ngFor="let result of measurementResult">{{ result }}</p>
+      </div>
+    </section>
+  
+    <!-- Sign In Section -->
+    <section>
+      <h2>Sign In</h2>
+      <input type="text" [(ngModel)]="nameInput" placeholder="Enter your name" />
+      <input type="password" [(ngModel)]="passwordInput" placeholder="Enter your password" />
+      <button (click)="login(nameInput, passwordInput)">Login</button>
+    </section>
   </div>
   

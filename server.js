@@ -1,5 +1,50 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+const path = require('path');
+
+// Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Serve Angular app
+app.use(express.static(path.join(__dirname, 'dist', 'your-app-name')));
+
+// API endpoints
+app.get('/convert-measurements', (req, res) => {
+  // Measurement conversion logic
+  // ...
+
+  // Dummy response
+  const measurementResult = ['2', '6'];
+  res.json(measurementResult);
+});
+
+app.post('/login', (req, res) => {
+  // Authentication logic
+  // ...
+
+  // Dummy response
+  const authResponse = { message: 'Logged in successfully' };
+  res.json(authResponse);
+});
+
+// Default route for Angular app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'your-app-name', 'index.html'));
+});
+
+// Start the server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
+
+
+/*
+const express = require('express');
+const app = express();
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
@@ -70,3 +115,5 @@ app.get('/convert-measurements', (req, res) => {
 app.listen(8080, () => {
     console.log('API server is running on http://localhost:8080/convert-measurements');
   });
+
+  */
