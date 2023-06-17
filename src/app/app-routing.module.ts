@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+import { MeasurementConversionComponent } from './measurement-conversion/measurement-conversion.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'measurement-conversion', component: MeasurementConversionComponent },
+  // Other routes if any
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
